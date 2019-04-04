@@ -10,18 +10,26 @@ From: dynverse/dynwrap:bioc
 %labels
     version 0.1.8
 
-%setup
-    mkdir /scratchLocal
-    mkdir /pbtech_mounts
-    mkdir /pbtech_mounts/softlib001
-    mkdir /athena
-    mkdir /zenodotus
+
+    
+    
+    
+    
+    
 
 %files
 
     . /code
 
 %post
+    mkdir /scratchLocal
+    mkdir /pbtech_mounts
+    mkdir /pbtech_mounts/softlib001
+    mkdir /athena
+    mkdir /zenodotus
+
+
+
     chmod -R 755 '/code'
     R -e 'devtools::install_cran(c("reshape", "reshape2", "pheatmap", "tsne", "igraph", "ggplot2", "mclust", "Rtsne", "cccd", "irlba"))'
     git clone https://github.com/edroaldo/cellrouter.git && find cellrouter -type f | grep -v "^cellrouter/CellRouter" | xargs rm
